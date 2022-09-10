@@ -3,7 +3,7 @@
 
 float values[5];
 float *vp;
-//
+//123
 //int main()
 //{
 //	for (vp = &values[5]; vp > &values[0];)
