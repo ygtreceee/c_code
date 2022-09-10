@@ -1,0 +1,5 @@
+﻿  test.c
+c:\code\test\game-2,c\game-2,c\test.c(18): warning C4305: “函数”: 从“int”到“char”截断
+  game.c
+  正在生成代码...
+  game-2,c.vcxproj -> C:\Code\Test\game-2,c\Debug\game-2,c.exe
