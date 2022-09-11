@@ -1,0 +1,18 @@
+﻿  test.c
+  learn.c
+d:\编程\code\c_code\learn_c\learn_c\learn.c(26): error C2084: 函数“int main()”已有主体
+          d:\编程\code\c_code\learn_c\learn_c\learn.c(9) : 参见“main”的前一个定义
+d:\编程\code\c_code\learn_c\learn_c\learn.c(102): error C2079: “sb”使用未定义的 struct“B”
+d:\编程\code\c_code\learn_c\learn_c\learn.c(119): error C2078: 初始值设定项太多
+d:\编程\code\c_code\learn_c\learn_c\learn.c(142): error C2078: 初始值设定项太多
+d:\编程\code\c_code\learn_c\learn_c\learn.c(144): error C2224: “.c”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(148): error C2224: “.c”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(149): error C2224: “.c”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(157): error C2224: “.c”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(157): error C2224: “.s”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(157): error C2224: “.d”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(162): error C2224: “.c”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(162): error C2224: “.s”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(162): error C2224: “.d”的左侧必须具有结构/联合类型
+d:\编程\code\c_code\learn_c\learn_c\learn.c(167): error C2078: 初始值设定项太多
+  正在生成代码...
