@@ -191,10 +191,68 @@ int main()
 //确定错误产生的原因
 //提出纠正错误的解决方法
 //对程序错误予以纠正，重新测试
+//常见错误：编译型错误、链接型错误、运行时错误
 
 //代码中加上assert（断言）可以帮助快速找到代码的问题所在
 
 //const修饰变量，这个变量就变成常变量，不可被修改，但是本质还是变量
 //const修饰指针变量的时候，如果放在*左边，例如const int* p  修饰的是*p，表示指针指向的内容，是不能通过指针来改变的,但是指针变量本身是可以修改的，例如p=&n；
 //     如果放在*右边，例如int* const p,修饰的是p，表示指针变量p本身，则p不能被改变，即不能够p=&n，但是它所指向的内容是可以改变的，例如*p=10；但是还可以双const，例如int const* const p
+
+
+//模拟实现strcpy
+#include <assert.h>
+char* my_strcpy(char* dest,const char* sour)
+{
+	assert(*dest != NULL);//断言
+	assert(*sour != NULL);
+	char* ret = dest;
+	while (*dest++ = *sour++)
+	{
+		;//hello的拷贝
+	}
+	return ret;//返回目标空间的起始地址
+}
+//源代码
+char* _cdecl strcpy(char* dst, const char* src)
+{
+	char* cp = dst;
+	while (*dst++ = *src++);
+	return (dst);
+}
+
+int main()
+{
+	char arr1[20] = "xxxxxxxxxx";
+	char arr2[] = "hello";
+	//1.目标空间的起始地址 2.源空间的起始地址
+	printf("%s\n", my_strcpy(arr1, arr2));//链式访问
+	return 0;
+}
+
+
+//模拟实现strlen
+size_t my_strlen(const char* str)//size_t是unsigned int ,表示无符号整型，即count不可能为负数
+{
+	assert(*str != NULL);
+	size_t count = 0;
+	while (*str++)
+	{
+		count++;
+	}
+	return count;
+}
+int main()
+{
+	char arr[] = "Hello world";
+	printf("%d\n", my_strlen(arr));
+	return 0;
+}
+
+//数组名是首元素地址，而且对于这个地址，是不可变的，即为常量，存放于静态区
+
+
+//声明外部符号用extern
+
+
 
