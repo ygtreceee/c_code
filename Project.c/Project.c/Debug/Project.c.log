@@ -1,2 +1,3 @@
 ﻿  class.c
-  Project.c.vcxproj -> C:\Users\hp\source\repos\Project.c\Debug\Project.c.exe
+E:\Code.c\c_code\Project.c\Project.c\class.c(93,6): warning C4013: “gets”未定义；假设外部返回 int
+  Project.c.vcxproj -> E:\Code.c\c_code\Project.c\Debug\Project.c.exe
