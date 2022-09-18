@@ -31,7 +31,6 @@ int main()
 	return 0;
 }
 
-
 int main()
 {
 	int arr[10] = { 0 };
@@ -51,8 +50,6 @@ int main()
 	return 0;
 }
 
-
-
 int main()
 {
 	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -69,8 +66,6 @@ int main()
 	return 0;
 }
 
-
-
 int main()
 {
 	int a = 10;
@@ -82,7 +77,6 @@ int main()
 	//以此类推还有三级指针（***pppa）等等，但是很少用到
 	return 0;
 }
-
 
 int main()
 {
@@ -309,9 +303,9 @@ int main()
 	int n = 0;
 	int i = 0;
 	int count = 0;
-	for (i = 0; i < 32; i++
+	for (i = 0; i < 32; i++)
 	{
-		(m>>i)&1
+		(m >> i) & 1;
 	}
 	return 0;
 }
@@ -552,9 +546,161 @@ int main()
 	printf("n的值为：%d\n", n);//9
 	printf("*pFloat的值为：%f\n", *pFloat);//此时n在内存中存放为00000000000000000000000000001001，以浮点类型打印，则会被以浮点数
 	//                                       类型的读取方式进行读取，即0 00000000 00000000000000000001001，得到的是一个极小的数，
-	//                                       所以打印出来是0.000000
+	//                                       所以打印出来是0.000000(特别注意：如果要对一个数以另一种类型打印出来，是需要利用一次指针强制类型转换的，不能直接打印，且不可以在printf里面直接转换）
 	*pFloat = 9.0;//n变为浮点数类型，二进制为1001.0，即（-1）^0*1.001*2^3,储存为0 10000010 00100000000000000000
 	printf("num的值为：%d\n", n);//以整型类型的方式进行读取，得到一个极大的数，为1091567616
 	printf("*pFloat的值为：%f\n", *pFloat);//以浮点数类型的方式进行读取，为9.000000
 	return 0;
 }
+int main()
+{
+	float f = 9.0;
+	printf("%d", f);//ERROR!!!
+	printf("%d", (unsigned int)f);//打印出来是9
+	//特别注意：如果要对一个数以另一种类型打印出来，是需要利用一次指针强制类型转换的，不能直接打印，且不可以在printf里面直接转换
+}
+
+
+
+
+
+//指针的进阶
+//指针概念：
+//1.指针就是个变量，用来存放地址，地址唯一标识一块内存空间
+//2.指针的大小是固定的4（32位平台）或8个（64位平台）字节
+//3.指针是有类型的，指针的类型决定指针的+-整数的步长，指针解引用操作时候的权限
+//4.指针的运算
+
+
+//字符指针
+int main()
+{
+	char ch = 'q';
+	char* pc = &ch;
+	return 0;
+}
+
+int main()
+{
+	char* pc = "Hello world";
+	//本质上是把"Hello world"这个字符串的首字符的地址存储在了pc
+	printf("%c\n", *pc);//H
+	printf("%s\n", *pc);//"Hello world"
+	//相似用法
+	char arr[] = "Hello world";
+	printf("%s\n", arr);//"Hello world"
+	return 0;
+}
+
+int main()
+{
+	char* str = "hello world";
+	*str = 'w';//ERROR!!!
+	//"hello world"是一个常量字符串，是不允许修改的，一些语法严格的编译器甚至需要在char之前加上const 
+	return 0;
+}
+int main()
+{
+	//字符串指针两种血法
+	//1
+	char str1 = "hello world";
+	char* pc1 = str1;
+	//2
+	char* pc2 = "hello world";
+	//两种写法的区别在于在内存中存储的区域不同，字符数组存储在全局数据区或栈区，第二种形式字符串存储在常量区。全局变量区和栈区
+	//的字符串有读取和写入和权限，而常量区字符串只有读取权限，没有写入权限，这就导致了字符数组在定义后可读取和修改每个字符而第
+	//二种形式（字符串常量）一旦定义后便不可修改，对它的赋值都是错误的（可整体赋值）
+	return 0;
+}
+int main()
+{
+	char str1[] = "hello world";
+	char str2[] = "hello world";
+	char* str3 = "hello world";
+	char* str4 = "hello world";
+	//这里的str3和str4指向的是同一个常量字符串，C/C++会把常量字符串存储到单独的一个内存区域，当几个指针指向同一个字符串的时候，
+	//他们实际会指向同一块内存，但是用相同的常量字符串去初始化不同的数组的时候就会开辟出不同的内存块，即str1和str2是两个不同
+	//的数组，开辟的是两个不同的空间，所以str1和str2不同，str3和str4相同
+	if (str1 == str2)
+		printf("str1 and str2 are same.\n");
+	else
+		printf("str1 and str2 are not same.\n");//be printed
+	if (str3 == str4)
+		printf("str3 and str4 are same.\n");//be printed
+	else
+		printf("str3 and str4 are not same.\n");
+	return 0;
+}
+
+
+//指针数组
+//本质是数组---数组中存放的是指针（地址）
+
+int main()
+{
+	int a[5] = { 1,2,3,4,5 };
+	int b[] = { 2,3,4,5,6 };
+	int c[] = { 3,4,5,6,7 };
+	int* arr[3] = { a,b,c };
+	int i = 0;
+	for (i = 0; i < 3; i++)
+	{
+		int j = 0;
+		for (j = 0; j < 5; j++)
+		{
+			//print the strings
+			printf("%d ", *(arr[i] + j));
+			//or
+			printf("%d ", arr[i][j]);
+		}
+	}
+	return 0;
+}
+
+int main()
+{
+	int* arr1[10];//整形指针的数组
+	char* arr2[4];//一级字符指针的数组
+	char** arr3[5];//二级字符指针的数组
+	return 0;
+}
+
+
+//数组指针
+//概念：能够指向数组的指针
+int main()
+{
+	double* d[5];//指针数组
+	double* (*pd)[5] = &d;//pd就是数组指针
+
+	int arr[10];
+	int (*parr)[10] = &arr;//parr是一个数组指针，其中存放的是数组的地址，parr先与*结合，说明parr是一个指针变量，然后指向一个
+	                       //大小为10个整型的数组。这里注意，[]的优先级是高于*的，所以要加（）来保证parr先与*结合
+	return 0;
+}
+
+int main()
+{
+	int arr[10] = { 0 };
+	int* p1 = arr;//arr需要一个整型指针
+	int (*p2)[10] = &arr;//&arr需要一个数组指针
+
+	//arr与&arr结果相同，但是类型不同
+	printf("%p\n", arr);
+	printf("%p\n", &arr);
+	printf("%p\n", p1);
+	printf("%p\n", p2);//结果都是一致的
+
+	printf("%p\n", p1);
+	printf("%p\n", p1 + 1);//p1 和 p1+1 结果相差4个字节
+	printf("%p\n", p2);
+	printf("%p\n", p2 + 1);//p2 和 p2+1 结果相差40个字节
+	//再次说明arr与&arr意义的不同，&arr表示的是数组的地址，而不是数组首元素的地址，整型地址+1向后移动一个整型，数组地址+1向
+	//后移动一个数组
+	return 0;
+}
+
+//数组名是数组首元素地址，但是有两种情况例外
+//1.sizeof(数组名）-- 数组名表示的是整个数组，计算的是整个数组的大小，单位是字节
+//2.&数组名 -- 数组名表示整个数组，取的是整个数组的地址
+//
