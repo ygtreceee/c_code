@@ -667,6 +667,8 @@ int main()
 
 
 //数组指针
+
+
 //概念：能够指向数组的指针
 int main()
 {
@@ -703,4 +705,78 @@ int main()
 //数组名是数组首元素地址，但是有两种情况例外
 //1.sizeof(数组名）-- 数组名表示的是整个数组，计算的是整个数组的大小，单位是字节
 //2.&数组名 -- 数组名表示整个数组，取的是整个数组的地址
-//
+
+
+//数组指针的使用
+int main()
+{
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int(*p)[10] = &arr;
+	//把数组arr的地址赋值给数组指针变量p
+	//但是我们一般很少这样写
+	return 0;
+}
+
+//使用范例
+#include <stdio.h>
+void print_arr1(int arr[3][5],int row, int col)
+{
+	int i = 0;
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d", arr[i][j]);
+		}
+		printf("\n");
+	}
+}
+void print_arr2(int(*arr)[5], int row, int col)
+{
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			printf("%d ", *(*(arr + i) + j));//????
+		}
+	}
+}
+int mian()
+{
+	int arr[3][5] = { {1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15} };
+	print_arr1(arr, 3, 5);
+	//数组名arr表示首元素的地址
+	//但是二维数组的首元素是二维数组的第一行
+	//所以这里传递的arr，其实相当于第一行的地址，是一维数组的地址
+	//可以用数组指针来接收
+	print_arr2(arr, 3, 5);
+	return 0;
+}
+
+//int arr[5];整型数组
+//int *parr1[10];指针数组
+//int (*parr2)[10];数组指针
+//int (*parr3[10])[5];parr3是一个存放数组指针的数组，该数组能够存放十个数组指针，每个数组指针能够指向一个数组，数组有5个元素
+
+
+//数组参数、指针参数
+#include <stdio.h>
+void test (int arr[])//允许，因为传过来的也只是个地址，所以[]中的数字可加可不加
+{}
+void test(int arr[10])//写了[]中的数字，但是没有实质意义
+{}
+void test(int* arr)//整型指针，允许
+{}
+void test2(int* arr[20])//指针数组，允许
+{}
+void test2(int** arr)//传过来的是int*的地址，就是指针的地址，也就是二级指针，允许
+{}
+int main()
+{
+	int arr[10] = { 0 };
+	int *arr2[20] = { 0 };
+	test(arr);
+	test2(arr2);
+}
