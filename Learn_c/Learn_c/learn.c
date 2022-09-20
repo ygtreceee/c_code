@@ -445,6 +445,24 @@ int main()
 //补充：char到底是signed char还是unsigned char，c语言标准并没有规定，取决于编译器，且大部分编译器都是signed char；但是int有规定是signed int、
 //      short是signed short
 
+#include <stdio.h>
+int i;//i是全局变量，不初始化，默认是0
+int main()
+{
+	i--;//i=-1
+	//sizeof这个操作符，算出的结果的类型是unsigned int，所以前后比较的时候，会使得前面的i先转换为一个无符号数，是一个很大的数
+	//类似于int类型与double类型相加得到double类型数
+	if (i > sizeof(i))
+	{
+		printf(">\n");//be printed
+	}
+	else
+	{
+		printf("<\n");
+	}
+	return 0;
+}
+
 
 
 //大小端
@@ -762,6 +780,7 @@ int mian()
 
 
 //数组参数、指针参数
+//一维数组传参
 #include <stdio.h>
 void test (int arr[])//允许，因为传过来的也只是个地址，所以[]中的数字可加可不加
 {}
@@ -779,4 +798,24 @@ int main()
 	int *arr2[20] = { 0 };
 	test(arr);
 	test2(arr2);
+}
+//二维数组传参
+void test(int arr[3][5])//ok
+{}
+void test(int arr[][])//error,行可以省略，列绝对不能省略
+{}
+void test(int arr[][5])//ok
+{}
+void test(int* arr)//error,传过来的是第一行数组的地址，不可以用一个int接收
+{}
+void test(int* arr[5])//error,指针数组无法接收地址
+{} 
+void test(int (*arr)[5])//ok,指向一维数组的指针
+{}
+void test(int** arr)//error，传过去的是一维数组的地址，不能用int二级指针接收
+{}
+int main()
+{
+	int arr[3][5] = { 0 };
+	test(arr);
 }
