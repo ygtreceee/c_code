@@ -819,3 +819,60 @@ int main()
 	int arr[3][5] = { 0 };
 	test(arr);
 }
+
+
+
+
+//求出0~100000之间的所有“水仙花数”并输出
+//“水仙花数”是指一个n位数，其各位数字的n次方之和恰好等于该数本身
+//如：153=1^3+5^3+3^3,则153符合
+//要求输出m和n之间的水仙花数
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int m, n;
+	while (scanf("%d %d", &m, &n) != EOF)
+	{
+		int i;
+		int count = 0;
+		for (i = m; i <= n; i++)
+		{
+			int num = 0;
+			int tmp = i;
+			while (tmp)
+			{
+				num++;
+				tmp = tmp / 10;
+			}
+			int sum = 0;
+			tmp = i;
+			while (tmp)
+			{
+				sum += pow(tmp % 10, num);
+				tmp = tmp / 10;
+			}
+			if (sum == i && count == 0)
+			{
+				printf("%d", i);
+				count++;
+			}
+			else if (sum == i && count != 0)
+			{
+				printf(" %d", i);
+				count++;
+			}
+		}
+		if (count == 0)
+		{
+			printf("no\n");
+		}
+		else
+		{
+			printf("\n");
+		}
+	}
+	return;
+}
+
+
