@@ -1,51 +1,102 @@
+/*
+#include <stdio.h>
+int main()
+{
+	int n = 0;
+	int i,a;
+	int ret = 1;
+	while (scanf_s("%d ", &n) != EOF)
+	{
+		for (i = 0; i < n; i++)
+		{
+			if (i != n - 1)
+			{
+				scanf_s("%d ", &a);
+			}
+			else if(i == n - 1)
+			{
+				scanf_s("%d", &a);
+			}
+			if (a % 2 == 1)
+			{
+				ret *= a;
+			}
+		}
+		printf("%d\n", ret);
+		ret = 1;
+	}
+}
+*/
+
+
+
+
+#include <stdio.h>
+int main()
+{
+	int m, n;
+	int odd = 0;
+	int even = 0;
+	int i = 0;
+	while (scanf_s("%d %d", &m, &n) != EOF)
+	{
+		for (i = m; i <= n; i++)
+		{
+			if (i % 2 == 1)
+			{
+				odd += i * i * i;
+			}
+			if (i % 2 == 0)
+			{
+				even +=i*i;
+			}
+		}
+		printf("%d %d\n", even,odd);
+		odd = 0;
+		even = 0;
+	}
+	return 0;
+}
+
+
+
+
+/*
 #include <stdio.h>
 #include <math.h>
 int main()
 {
-	int m, n;
-	while (scanf("%d %d", &m, &n) != EOF)
+	double n, m;
+	int i;
+	double sum = 0;
+	while (scanf_s("%lf %lf",&n,&m) != EOF)
 	{
-		int i;
-		int count = 0;
-		for (i = m; i <= n; i++)
+		sum = n;
+		for (i = 1; i < m; i++)
 		{
-			int num = 0;
-			int tmp = i;
-			while (tmp)
-			{
-				num++;
-				tmp = tmp / 10;
-			}
-			int sum = 0;
-			tmp = i;
-			while(tmp)
-			{
-				sum += pow(tmp % 10, num);
-				tmp = tmp / 10;
-			}
-			if (sum == i && count==0)
-			{
-				printf("%d", i);
-				count++;
-			}
-			else if (sum == i && count !=0)
-			{
-				printf(" %d", i);
-				count++;
-
-			}
+			sum += sqrt(n);
+			n = sqrt(n);
 		}
-		if (count == 0)
-		{
-			printf("no\n");
-		}
-		else
-		{
-			printf("\n");
-		}
+		printf("%.2f\n", sum);
+		sum = 0;
 	}
-	return;
+	return 0;
 }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
