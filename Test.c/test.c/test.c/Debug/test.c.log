@@ -1,2 +1,3 @@
 ﻿  test.c
-  test.c.vcxproj -> E:\Code.c\c_code\Test.c\test.c\Debug\test.c.exe
+E:\Code.c\c_code\Test.c\test.c\test.c\test.c(8,9): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Code.c\c_code\Test.c\test.c\test.c\test.c(13,4): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
