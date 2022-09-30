@@ -1,3 +1,0 @@
-﻿  class.c
-E:\Code.c\c_code\Project.c\Project.c\class.c(131,29): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-  Project.c.vcxproj -> E:\Code.c\c_code\Project.c\Debug\Project.c.exe
