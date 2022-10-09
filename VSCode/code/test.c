@@ -1,6 +1,7 @@
 #include <stdio.h>
 int main()
 {
-    printf("Hello world!");
+    char* a = "abcdef";
+    printf("%s", a);
     return 0;
 }
